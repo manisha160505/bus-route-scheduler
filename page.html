@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Admin Console</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <!-- Navigation Bar -->
+        <div class="navbar">
+            <div class="admin-section">
+                <h1>Admin Console</h1>
+                <div id="username-display" class="username-display"></div>
+                <!-- Username Display -->
+            </div>
+            <div class="logout-section">
+                <div id="date-time" class="date-time"></div>
+                <img src="exit.png" alt>
+                <a href="index.html" class="logout"><i
+                        class="fas fa-sign-out-alt"></i>
+                    Logout</a>
+            </div>
+        </div>
+
+        <div class="admin-console">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <ul>
+                    <li><a href="#" id="dashboard-tab"
+                            onclick="showContent('dashboard', this)">Dashboard</a></li>
+                    <li><a href="#" id="current-status-tab"
+                            onclick="showContent('current-status', this)">Current
+                            Status</a></li>
+                    <li><a href="#" id="live-tracking-tab"
+                            onclick="showContent('live-tracking', this)">Live
+                            Tracking</a></li>
+                    <li><a href="#" id="driver-details-tab"
+                            onclick="showContent('driver-details', this)">Driver
+                            Details</a></li>
+                    <li><a href="#" id="shift-schedule-tab"
+                            onclick="showContent('shift-schedule', this)">Shift
+                            Schedule</a></li>
+                    <li><a href="#" id="emergency-sos-tab"
+                            onclick="showContent('emergency-sos', this)">Emergency
+                            SOS</a></li>
+                    <li><a href="#" id="system-log-tab"
+                            onclick="showContent('system-log', this)">System
+                            Log</a></li>
+                    <li><a href="#" id="account-management-tab"
+                            onclick="showContent('account-management', this)">Account
+                            Management</a></li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+
+                <!-- Default Content (System Overview) -->
+                <div id="dashboard" class="content-section">
+                    <h2>System Overview </h2>
+                    <div class="overview">
+                        <div class="overview-box">
+                            <h3>Total Buses</h3>
+                            <p>1250</p>
+                        </div>
+                        <div class="overview-box">
+                            <h3>Active Buses</h3>
+                            <p>1143</p>
+                        </div>
+                        <div class="overview-box">
+                            <h3>Trip Count</h3>
+                            <p>Today: 7500</p>
+                            <p>Yesterday: 7409</p>
+                        </div>
+                        <div class="overview-box">
+                            <h3>Avg Trip Duration</h3>
+                            <p>45 mins</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Content Sections -->
+                <div id="current-status" class="content-section"
+                    style="display: none;">
+                    <h2>Current Status</h2>
+                    <div class="status-overview">
+                        <div class="status-box">
+                            <h3>Buses in Operation</h3>
+                            <p>1143</p>
+                        </div>
+                        <div class="status-box">
+                            <h3>Idle Buses</h3>
+                            <p>107</p>
+                        </div>
+                        <div class="status-box">
+                            <h3>Total Drivers On Duty</h3>
+                            <p>980</p>
+                        </div>
+                        <div class="status-box">
+                            <h3>Accidents Today</h3>
+                            <p>2</p>
+                        </div>
+                    </div>
+
+                    <div class="performance-overview">
+                        <h2>Performance Metrics</h2>
+                        <div class="metric-box">
+                            <h3>On-Time Performance</h3>
+                            <p>92%</p>
+                        </div>
+                        <div class="metric-box">
+                            <h3>Fuel Efficiency</h3>
+                            <p>8.5 km/l</p>
+                        </div>
+                        <div class="metric-box">
+                            <h3>Breakdowns Reported</h3>
+                            <p>5</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="live-tracking" class="content-section"
+                    style="display: none;">
+                    <h2>Live Tracking</h2>
+                    <p>Here is the live tracking data...</p>
+                </div>
+
+                <div id="driver-details" class="content-section"
+                    style="display: none;">
+                    <h2>Driver Details</h2>
+
+                    <form id="add-driver-form">
+                        <div class="form-group">
+                            <label for="driver-id">Driver ID</label>
+                            <input type="text" id="driver-id" name="driver-id"
+                                placeholder="Enter driver's ID" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="driver-name">Driver Name</label>
+                            <input type="text" id="driver-name"
+                                name="driver-name"
+                                placeholder="Enter driver's name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="driver-status">Driver Status</label>
+                            <select id="driver-status" name="driver-status"
+                                required>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="assigned-bus">Assigned Bus</label>
+                            <input type="text" id="assigned-bus"
+                                name="assigned-bus"
+                                placeholder="Enter assigned bus" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="driver-contact">Driver Contact</label>
+                            <input type="text" id="driver-contact"
+                                name="driver-contact"
+                                placeholder="Enter driver's contact" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Add
+                            Driver</button>
+                    </form>
+
+                    <!-- Driver Details Table -->
+                    <table id="driver-details-table"
+                        class="driver-details-table">
+                        <thead>
+                            <tr>
+                                <th>Driver ID</th>
+                                <th>Driver Name</th>
+                                <th>Status</th>
+                                <th>Assigned Bus</th>
+                                <th>Contact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>001</td>
+                                <td>Raju</td>
+                                <td>Active</td>
+                                <td>Bus 101</td>
+                                <td>+91 9876543210</td>
+                            </tr>
+                            <tr>
+                                <td>002</td>
+                                <td>Mohan</td>
+                                <td>Inactive</td>
+                                <td>—</td>
+                                <td>+91 9876543211</td>
+                            </tr>
+                            <tr>
+                                <td>003</td>
+                                <td>Suresh</td>
+                                <td>Active</td>
+                                <td>Bus 102</td>
+                                <td>+91 9876543212</td>
+                            </tr>
+                            <tr>
+                                <td>004</td>
+                                <td>Mahesh</td>
+                                <td>Active</td>
+                                <td>Bus 103</td>
+                                <td>+91 9876543213</td>
+                            </tr>
+                            <tr>
+                                <td>005</td>
+                                <td>Ramu</td>
+                                <td>Inactive</td>
+                                <td>—</td>
+                                <td>+91 9876543214</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="shift-schedule" class="content-section"
+                    style="display: none;">
+                    <h2>Shift Schedule</h2>
+                    <form id="shift-schedule-form">
+                        <div class="form-group">
+                            <label for="driver-name">Driver Name</label>
+                            <input type="text" id="driver-name"
+                                name="driver-name"
+                                placeholder="Enter driver's name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shift-start">Shift Start Time</label>
+                            <input type="time" id="shift-start"
+                                name="shift-start" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shift-end">Shift End Time</label>
+                            <input type="time" id="shift-end" name="shift-end"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shift-date">Shift Date</label>
+                            <input type="date" id="shift-date" name="shift-date"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="shift-notes">Additional Notes</label>
+                            <textarea id="shift-notes" name="shift-notes"
+                                placeholder="Enter any additional notes..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Add Shift
+                            Schedule</button>
+                    </form>
+                </div>
+
+                <div id="emergency-sos" class="content-section"
+                    style="display: none;">
+                    <h2>Emergency SOS</h2>
+                    <button id="sos-button" class="sos-button">Send SOS</button>
+
+                    <div class="sos-options">
+                        <h3>Emergency Contacts:</h3>
+                        <br>
+                        <ul>
+                            <li><a href="tel:911">Call Police</a></li>
+                            <li><a href="tel:1234567890">Call Family</a></li>
+                        </ul>
+
+                        <p>Share Location:</p>
+                        <button id="share-location" class="share-location">Share
+                            Live Location</button>
+
+                        <p>Nearby Services:</p>
+                        <button id="nearby-services"
+                            class="nearby-services">Find Nearby
+                            Services</button>
+                    </div>
+                </div>
+
+                <div id="system-log" class="content-section"
+                    style="display: none;">
+                    <h2>System Log</h2>
+
+                    <div class="log-container">
+                        <table class="log-table">
+                            <thead>
+                                <tr>
+                                    <th>Timestamp</th>
+                                    <th>Event</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>2024-09-09 12:34:56</td>
+                                    <td>User logged in</td>
+                                    <td>Success</td>
+                                </tr>
+                                <tr>
+                                    <td>2024-09-09 12:45:21</td>
+                                    <td>SOS button clicked</td>
+                                    <td>Sent</td>
+                                </tr>
+                                <tr>
+                                    <td>2024-09-09 12:50:05</td>
+                                    <td>Live location shared</td>
+                                    <td>Success</td>
+                                </tr>
+                                <!-- Additional log entries can go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="account-management" class="content-section"
+                    style="display: none;">
+
+                    <h2>Account Management</h2>
+
+                    <div class="account-container">
+                        <!-- Update Profile Section -->
+                        <div class="profile-section">
+                            <h3>Update Profile</h3>
+                            <form id="update-profile-form">
+                                <label for="name">Full Name:</label>
+                                <input type="text" id="name" name="name"
+                                    placeholder="Enter your name" required>
+
+                                <label for="email">Email Address:</label>
+                                <input type="email" id="email" name="email"
+                                    placeholder="Enter your email" required>
+
+                                <label for="phone">Phone Number:</label>
+                                <input type="tel" id="phone" name="phone"
+                                    placeholder="Enter your phone number"
+                                    required>
+
+                                <button type="submit"
+                                    class="update-button">Update
+                                    Profile</button>
+                            </form>
+                        </div>
+
+                        <!-- Change Password Section -->
+                        <div class="password-section">
+                            <h3>Change Password</h3>
+                            <form id="change-password-form">
+                                <label for="current-password">Current
+                                    Password:</label>
+                                <input type="password" id="current-password"
+                                    name="current-password"
+                                    placeholder="Enter current password"
+                                    required>
+
+                                <label for="new-password">New Password:</label>
+                                <input type="password" id="new-password"
+                                    name="new-password"
+                                    placeholder="Enter new password" required>
+
+                                <label for="confirm-password">Confirm New
+                                    Password:</label>
+                                <input type="password" id="confirm-password"
+                                    name="confirm-password"
+                                    placeholder="Confirm new password" required>
+
+                                <button type="submit"
+                                    class="change-button">Change
+                                    Password</button>
+                            </form>
+                        </div>
+
+                        <!-- Account Details Section -->
+                        <div class="details-section">
+                            <h3>Account Details</h3>
+                            <ul>
+                                <li><strong>Username:</strong> user123</li>
+                                <li><strong>Email:</strong>
+                                    user@example.com</li>
+                                <li><strong>Phone:</strong> +1234567890</li>
+                                <li><strong>Account Created:</strong>
+                                    2024-01-15</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script> 
+     function showContent(sectionId, element) {
+    // Hide all content sections
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach((section) => {
+        section.style.display = 'none';
+    });
+
+    // Show the selected section
+    document.getElementById(sectionId).style.display = 'block';
+
+    // Remove 'active' class from all sidebar items
+    const allSidebarLinks = document.querySelectorAll('.sidebar a');
+    allSidebarLinks.forEach(link => link.classList.remove('active'));
+
+    // Add 'active' class to the clicked sidebar item
+    element.classList.add('active');
+}
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+        // Get all the status cells (3rd column) from the driver details table
+        const statusCells = document.querySelectorAll('.driver-details-table td:nth-child(3)');
+        
+        // Loop through the status cells and apply the class based on the content
+        statusCells.forEach(function (cell) {
+            if (cell.textContent.trim() === 'Active') {
+                cell.style.backgroundColor = '#28a745';  // Green for active
+                cell.style.color = '#fff';  // White text for better contrast
+            } else if (cell.textContent.trim() === 'Inactive') {
+                cell.style.backgroundColor = '#dc3545';  // Red for inactive
+                cell.style.color = '#fff';  // White text for better contrast
+            }
+        });
+        
+    });
+        
+    document.getElementById('add-driver-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission from refreshing the page
+
+        // Get form values
+        const driverID = document.getElementById('driver-id').value;
+        const driverName = document.getElementById('driver-name').value;
+        const driverStatus = document.getElementById('driver-status').value;
+        const assignedBus = document.getElementById('assigned-bus').value;
+        const driverContact = document.getElementById('driver-contact').value;
+
+        // Create a new row
+        const newRow = document.createElement('tr');
+
+        // Create and append new cells with driver details
+        const idCell = document.createElement('td');
+        idCell.textContent = driverID;
+        newRow.appendChild(idCell);
+
+        const nameCell = document.createElement('td');
+        nameCell.textContent = driverName;
+        newRow.appendChild(nameCell);
+
+        const statusCell = document.createElement('td');
+        statusCell.textContent = driverStatus;
+
+        if (driverStatus === 'Active') {
+            statusCell.style.backgroundColor = '#28a745'; // Green
+            statusCell.style.color = 'white';
+        } else if (driverStatus === 'Inactive') {
+            statusCell.style.backgroundColor = '#dc3545'; // Red
+            statusCell.style.color = 'white';
+        }
+
+        newRow.appendChild(statusCell);
+
+        const busCell = document.createElement('td');
+        busCell.textContent = assignedBus;
+        newRow.appendChild(busCell);
+
+        const contactCell = document.createElement('td');
+        contactCell.textContent = driverContact;
+        newRow.appendChild(contactCell);
+
+        // Append the new row to the table body
+        document.querySelector('#driver-details-table tbody').appendChild(newRow);
+
+        // Clear the form fields after adding
+        document.getElementById('add-driver-form').reset();
+    });
+
+    function updateDateTime() {
+        const dateTimeElement = document.getElementById('date-time');
+        const now = new Date();
+        
+        // Format the date and time
+        const date = now.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+        const time = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+
+       
+        dateTimeElement.textContent = `${date} | ${time}`;
+    }
+
+ 
+    setInterval(updateDateTime, 1000);
+
+   
+    updateDateTime();
+     
+    const loggedInUsername = 'Suresh'; 
+
+
+document.getElementById('username-display').textContent = `Logged in as: ${loggedInUsername}`;
+
+// const button =
+//             document.querySelector('#dashbutton');
+//         button.addEventListener('click',
+//             () => {
+//                 button.style.backgroundColor = 
+//                     "green";
+//             });
+
+document.getElementById('sos-button').addEventListener('click', function() {
+        alert('SOS sent! Emergency contacts have been notified.');
+        // You can add actual API functionality to send SOS here
+    });
+
+    // Share Location button click event
+    document.getElementById('share-location').addEventListener('click', function() {
+        alert('Sharing live location...');
+        // Implement location-sharing functionality here
+    });
+
+    // Nearby Services button click event
+    document.getElementById('nearby-services').addEventListener('click', function() {
+        alert('Searching for nearby emergency services...');
+        // Implement Google Maps API or similar service to find nearby help
+    });
+     
+  
+    document.getElementById('shift-schedule-form').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent page reload on form submission
+
+        // Collect form data
+        const driverName = document.getElementById('driver-name').value;
+        const shiftStart = document.getElementById('shift-start').value;
+        const shiftEnd = document.getElementById('shift-end').value;
+        const shiftDate = document.getElementById('shift-date').value;
+        const shiftNotes = document.getElementById('shift-notes').value;
+
+        // For demo purposes, show an alert with the form data
+        alert(`Driver: ${driverName}\nShift Start: ${shiftStart}\nShift End: ${shiftEnd}\nDate: ${shiftDate}\nNotes: ${shiftNotes}`);
+
+        // You can also send the data to a backend or store it locally as needed
+        // Example: sendDataToServer({driverName, shiftStart, shiftEnd, shiftDate, shiftNotes});
+    });
+
+
+   </script>
+
+    </body>
+</html>
